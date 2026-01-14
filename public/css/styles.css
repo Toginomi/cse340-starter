@@ -4,3 +4,405 @@
 *:after {
   box-sizing: border-box;
 }
+
+*{
+  font-family: Arial, sans-serif;
+}
+
+:root{
+  --dark-color: #242332;
+  --light-color: #ffffff;
+  --button-color: #4c96d7;
+  --accent-color: #334fdb;
+}
+
+body{
+  color: var(--dark-color);
+}
+
+#wrapper{
+  background-color: var(--light-color);
+}
+
+#top-header{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 0px;
+}
+
+#top-header a{
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+.siteName{
+  font-weight: bold;
+  font-size: large;
+  color: var(--dark-color);
+}
+
+#tools{
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: xx-small;
+}
+
+nav{
+  background-color: var(--dark-color);
+}
+
+nav li a{
+  text-decoration: none;
+}
+
+nav ul{
+  color: #ffffff;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style-type: none;
+  font-size: x-small;
+  padding: 4px;
+}
+
+.hero{
+  position: relative;
+}
+
+.hero h2{
+  font-size: large;
+}
+
+.hero .hero-image-container{
+  display: grid;
+  justify-items: right;
+  width: 100%;
+}
+
+.hero .hero-float{
+  position: absolute;
+  left: 5%;
+  top: 25%;
+  background-color: rgba(240, 233, 233, 0.5);
+  color: var(--button-color);
+}
+
+.hero-image{
+  width: 75%;
+  height: auto;
+}
+
+.hero-float h3, .hero-float p{
+  margin-bottom: 0;
+  margin: 0;
+}
+
+
+.hero-float a {
+  padding-top: 100px;
+}
+
+.hero-float::after{
+  color: var(--button-color);
+
+}
+
+.hero-float {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hero-float:hover {
+  transform: scale(1.1);
+}
+
+.hero-float img {
+  width: 100px;
+  height: auto;
+}
+
+.upgrades-reviews-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.upgrades, .reviews {
+  width: 100%;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px;
+  text-align: center;
+}
+
+.upgrade-item {
+  background-color: var(--button-color);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.upgrade-item img {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.upgrade-item a {
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews ul {
+  padding-left: 20px;
+  margin-top: 0;
+}
+
+.reviews li {
+  margin-bottom: 10px;
+  font-size: small;
+}
+
+/* vehicle classification type pages */
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  padding: 0;
+  list-style: none;
+}
+
+#inv-display li {
+  background-color: rgb(219, 212, 212);
+  width: 220px;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#inv-display li img {
+  display: block;
+  max-height: 200px;
+  width: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.namePrice {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.namePrice a {
+  text-decoration: none;
+  color: var(--dark-color);
+  font-weight: bold;
+}
+
+.namePrice span {
+  display: block;
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #000;
+}
+
+/* Message for no results */
+.notice {
+  text-align: center;
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+/********* Vehicle Detail View Styles *********/
+
+/* Container for the vehicle detail view */
+.vehicle-detail {
+  background-color: var(--light-color);
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+}
+
+/* Header styling: display vehicle make and model prominently */
+.vehicle-header h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+/* Main content: image and info */
+.vehicle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Image container and styling */
+.vehicle-media {
+  flex: 1;
+  text-align: center;
+}
+
+.vehicle-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Vehicle information styling */
+.vehicle-info {
+  flex: 1;
+}
+
+.vehicle-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.vehicle-info li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.vehicle-info li strong {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Description section */
+.vehicle-description {
+  margin-top: 20px;
+}
+
+.vehicle-description h2 {
+  font-size: 1.8rem;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+}
+
+.vehicle-description p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Back to Classification button */
+.back-to-list {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--light-color);
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.back-to-list:hover {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 768px){
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+    align-items: center;
+    justify-items: center;
+  }
+
+  #wrapper{
+    margin-top: 50px;
+    width: 90%;
+    border: solid 5px var(--accent-color);
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  .upgrades-reviews-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .upgrades, .reviews {
+    width: 48%;
+  }
+
+  .vehicle-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .vehicle-media {
+    margin-right: 20px;
+  }
+  
+  .vehicle-header h1 {
+    font-size: 3rem;
+  }
+  
+  .vehicle-info ul {
+    font-size: 1.3rem;
+  }
+  
+  .vehicle-description h2 {
+    font-size: 2rem;
+  }
+}
+
+footer{
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  font-size: small;
+}
+
+footer a{
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* For screens smaller than 768px: stack content in a single column */
+@media screen and (max-width: 767px) {
+  .vehicle-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .vehicle-media {
+    margin-bottom: 20px;
+  }
+  
+  .vehicle-header h1 {
+    font-size: 2rem;
+  }
+  
+  .vehicle-info ul {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .vehicle-description h2 {
+    font-size: 1.5rem;
+  }
+}
