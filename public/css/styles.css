@@ -53,11 +53,11 @@ nav{
 }
 
 nav li a{
+  color: #ffffff;
   text-decoration: none;
 }
 
 nav ul{
-  color: #ffffff;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
