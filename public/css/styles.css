@@ -219,12 +219,28 @@ nav ul{
   color: #000;
 }
 
-/* Message for no results */
 .notice {
   text-align: center;
-  color: red;
-  font-size: 1.2rem;
-  margin-top: 2rem;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.notice.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.notice.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.login-form span { 
+  font-size: 0.9rem; color: #555; margin-bottom: 5px; display: block; 
 }
 
 /********* Vehicle Detail View Styles *********/
@@ -322,6 +338,288 @@ nav ul{
   text-decoration: underline;
 }
 
+/*********** INVENTORY MANAGEMENT LINKS ************/
+.management-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.management-links a {
+  color: var(--dark-color);
+  text-decoration: underline;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.management-links a:hover {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+/* Container for the Add Classification section */
+.add-classification-container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: var(--light-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Directions text styling */
+.add-classification-container p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Form layout (reusing your existing form structure) */
+#add-classification-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Label styling */
+#add-classification-form label {
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+/* Input field styling */
+#add-classification-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Visual feedback for the required RegEx pattern */
+#add-classification-form input:focus:invalid {
+    border-color: #d9534f; /* Red for invalid pattern */
+    background-color: #fff9f9;
+}
+
+#add-classification-form input:focus:valid {
+    border-color: #5cb85c; /* Green for valid pattern */
+}
+
+/* Button styling */
+#add-classification-form button {
+    background-color: var(--button-color);
+    color: var(--dark-color);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-classification-form button:hover {
+    background-color: var(--accent-color);
+}
+
+/* Layout for the long inventory form */
+#add-inventory-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#add-inventory-form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#add-inventory-form input, 
+#add-inventory-form select, 
+#add-inventory-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+#add-inventory-form textarea {
+    min-height: 80px;
+}
+
+#add-inventory-form button {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--button-color);
+    color: var(--dark-color);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/********* Login Form Styles *********/
+.login-form {
+  background-color: var(--light-color);
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form label {
+  font-weight: bold;
+  color: var(--dark-color);
+  margin-bottom: 5px;
+}
+
+.login-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 5px rgba(51, 79, 219, 0.4);
+}
+
+.login-form button {
+  background-color: var(--button-color);
+  color: var(--light-color);
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: var(--accent-color);
+}
+
+/********* Flash Messages *********/
+/* General styling for all message boxes */
+.notice {
+  text-align: center;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 600px;
+  list-style: none; /* Removes bullets if used for error lists */
+  font-weight: bold;
+}
+
+/* Specific styling for successful database actions */
+.notice {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+/* Specific styling for errors or failed validation */
+.notice.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+/* If errors are displayed as a list (Task 2 & 3 requirements) */
+.notice.error li {
+  margin-bottom: 5px;
+}
+
+/********* Password Hint *********/
+.login-form span {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/********* Sign-up Link *********/
+.signup-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.signup-link a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/********* Registration Form Styles *********/
+.register-form {
+  background-color: var(--light-color);
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-form label {
+  font-weight: bold;
+  color: var(--dark-color);
+  margin-bottom: 5px;
+}
+
+.register-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.register-form input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 5px rgba(51, 79, 219, 0.4);
+}
+
+.register-form button {
+  background-color: var(--button-color);
+  color: var(--light-color);
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+  background-color: var(--accent-color);
+}
+
 @media screen and (min-width: 768px){
   body {
     background-image: url("../images/site/checkerboard.jpg");
@@ -404,5 +702,15 @@ footer a{
   
   .vehicle-description h2 {
     font-size: 1.5rem;
+  }
+
+  .login-form {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .register-form {
+    width: 90%;
+    padding: 15px;
   }
 }
