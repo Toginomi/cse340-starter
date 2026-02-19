@@ -1,33 +1,31 @@
-<!-- Task One
-Create a new management view inside the views > inventory folder.
-The view should contain an appropriate title and h1 value to represent its role as a management view for all things dealing with inventory.
-The view must be capable of displaying a flash message sent from the existing inventory controller.
-The view should contain two links (no links are directly to a view, all must use the MVC approach):
-One to trigger a process to deliver an add new classification view (see Task 2).
-One to trigger a process to deliver an add new inventory view (see Task 3).
-The view must be delivered using the MVC architecture as with all other views.
-The view must meet the requirements of the frontend checklist.
-For now, there should NOT be a link to reach this view in any other view. It will be accessed only by direct manipulation of the URL. Use this route: site-name/inv/)
- -->
-
 <% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-  res.redirect('/')
-} %>
+  <h1><%= title %></h1>
+<% } %>
 
 <%- messages() %>
 
 <% if (errors) { %>
-  <ul class="notice error">
+  <ul class="notice">
     <% errors.array().forEach(error => { %>
       <li><%= error.msg %></li>
-    <%  }) %>
+    <% }) %>
   </ul>
 <% } %>
 
-<%# messages() %>
 <div class="management-links">
     <a href="/inv/add-classification" title="Click to add new Classification">Add New Classification</a>
     <a href="/inv/add-inventory" title="Click to add new Inventory">Add New Inventory</a>
 </div>
+
+<h2>Manage Inventory</h2>
+<p>Select a classification from the list to see the items belonging to that classification.</p>
+
+<div class="selection-area">
+  <%- classificationSelect %>
+</div>
+
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>
