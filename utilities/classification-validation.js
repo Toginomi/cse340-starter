@@ -14,7 +14,8 @@ invCont.classificationRules = () => {
         .escape()
         .notEmpty()
         .isLength({ min: 2 })
-        .withMessage("Please provide a classification name."), // on error this message is sent.
+        .matches(/^[a-zA-Z0-9]+$/) // Task 2: No spaces or special characters
+        .withMessage("Classification name cannot contain spaces or special characters."), // on error this message is sent.
   ]
 }
 
@@ -31,8 +32,11 @@ invCont.checkClassificationData = async (req, res, next) => {
             errors,
             title: "Add Classification",
             nav,
+            classification_name,
         })
     } else {
         next()
     }
 }
+
+module.exports = invCont;

@@ -1,6 +1,5 @@
 const utilities = require(".");
 const { body, validationResult } = require("express-validator");
-const invModel = require("../models/inventory-model");
 const invCont = {}
 
 /*  **********************************
@@ -36,6 +35,16 @@ invCont.inventoryRules = () => {
         .notEmpty()
         .isLength({ min: 10 })
         .withMessage("Please provide a description of at least 10 characters."), // on error this message is sent.
+    // Image path is required
+        body("inv_image")
+            .trim()
+            .notEmpty()
+            .withMessage("Please provide an image path."),
+    // Thumbnail path is required
+        body("inv_thumbnail")
+            .trim()
+            .notEmpty()
+            .withMessage("Please provide a thumbnail path."),
     // price is required and must be a valid number
     body("inv_price")
         .trim()
@@ -76,12 +85,12 @@ invCont.checkInventoryData = async (req, res, next) => {
   errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        const classifications = await invModel.getClassifications()
+        const classificationSelect = await utilities.buildClassificationList(classification_id)
         res.render("inventory/add-inventory", {
             errors,
             title: "Add Inventory",
             nav,            
-            classifications,
+            classificationSelect,
             inv_make,
             inv_model,
             inv_year,
@@ -95,3 +104,5 @@ invCont.checkInventoryData = async (req, res, next) => {
         next()
     }
 }
+
+module.exports = invCont;

@@ -1,8 +1,8 @@
 <% if (title) { %>
-  <h1><%= title %></h1>
-<% } %>
-
-<%- messages() %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
 
 <% if (errors) { %>
   <ul class="notice error">
@@ -13,7 +13,6 @@
 <% } %>
 
 <div class="add-inventory-container">
-    <p class="form-directions">All fields are required.</p>
     
     <form action="/inv/add-inventory" method="POST" id="add-inventory-form" class="register-form">
         <label for="classificationList">Classification</label>

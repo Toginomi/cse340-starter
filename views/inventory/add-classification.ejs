@@ -1,10 +1,8 @@
 <% if (title) { %>
-  <h1><%= title %></h1>
-<% } else { %>
-  <h1>Add New Classification</h1>
-<% } %>
-
-<%- messages() %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
 
 <% if (errors) { %>
   <ul class="notice error">
@@ -15,10 +13,6 @@
 <% } %>
 
 <div class="add-classification-container">
-    <p class="form-directions">
-        Please enter the name of the new classification below. 
-        <strong>Note:</strong> The name cannot contain spaces or special characters of any kind.
-    </p>
     
     <form action="/inv/add-classification" method="POST" id="add-classification-form" class="register-form">
         <label for="classification_name">Classification Name</label>
