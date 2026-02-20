@@ -1,3 +1,19 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
+
 <div class="vehicle-detail">
     <div class="vehicle-header">
       <h1><%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
@@ -27,6 +43,32 @@
     <div class="vehicle-description">
       <h2>Description:</h2>
       <p><%= vehicle.inv_description %></p>
+    </div>
+
+    <div id="review-section">
+        <h3>Customer Reviews</h3>
+        
+        <% if (locals.loggedin) { %>
+          <form action="/inv/detail/add-review" method="post" class="review-form">
+            <label for="review_text">Share your thoughts:</label>
+            <textarea name="review_text" id="review_text" required minlength="5"><%= locals.review_text %></textarea>
+            
+            <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+            <button type="submit">Post Review</button>
+          </form>
+        <% } else { %>
+          <p class="login-notice">Only logged-in users can leave reviews. <a href="/account/login">Login here</a>.</p>
+        <% } %>
+      </div>
+      
+      <div class="display-reviews">
+        <% reviews.forEach(review => { %>
+          <div class="review-card">
+            <p><strong><%= review.account_firstname %></strong> says:</p>
+            <p><%= review.review_text %></p>
+          </div>
+        <% }) %>
+      </div>
     </div>
 
     <a href="/inv/type/<%= vehicle.classification_id %>" class="back-to-list">Back to Classification</a>

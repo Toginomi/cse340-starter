@@ -5,6 +5,7 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities");
 const classValidate = require("../utilities/classification-validation");
 const invValidate = require("../utilities/inventory-validation");
+const reviewValidate = require("../utilities/review-validation")
 
 // --- PUBLIC ROUTES ---
 // These remain open so anyone can see the cars.
@@ -99,6 +100,21 @@ router.post(
   utilities.checkLogin,
   utilities.checkAccountType,
   utilities.handleErrors(invController.deleteItem)
+)
+
+// This catches "direct" access via the address bar (GET request)
+router.get("/detail/add-review", (req, res) => {
+  req.flash("notice", "Please use the provided form to submit a review.")
+  res.redirect("/")
+})
+
+// Process the review submission
+router.post(
+  "/detail/add-review",
+  utilities.checkLogin, // Authorization check
+  reviewValidate.reviewRules(), // Validation rules
+  reviewValidate.checkReviewData, // Error checking
+  utilities.handleErrors(invController.addReview) // Final processing
 )
 
 // Public test route

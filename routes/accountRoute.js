@@ -46,4 +46,7 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 )
 
+// Add this to your account routes
+router.get("/logout", utilities.handleErrors(accountController.accountLogout))
+
 module.exports = router

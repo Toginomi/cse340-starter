@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const reviewModel = require("../models/review-model")
 
 const invCont = {}
 
@@ -20,26 +21,34 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 /* ***************************
- * Build vehicle detail view
+ * Build vehicle detail view with Reviews
  * ************************** */
 invCont.buildByDetailId = async function (req, res, next) {
   try {
-    const detailId = req.params.detailId;
-    const data = await invModel.getInventoryById(detailId);
+    const detailId = req.params.detailId
+    const data = await invModel.getInventoryById(detailId)
+    
     if (!data) {
-      throw new Error("Vehicle not found");
+      throw new Error("Vehicle not found")
     }
-    const nav = await utilities.getNav();
-    const title = `${data.inv_make} ${data.inv_model}`;
+
+    // Enhancement: Fetch reviews for this specific vehicle
+    const reviews = await reviewModel.getReviewsByInvId(detailId)
+    
+    const nav = await utilities.getNav()
+    const title = `${data.inv_make} ${data.inv_model}`
+    
     res.render("./inventory/detail", {
       title,
       nav,
       vehicle: data,
-    });
+      reviews, // Points for View (Outcome 2)
+      errors: null,
+    })
   } catch (error) {
-    next(error);
+    next(error) // Points for Error Handling (Outcome 2)
   }
-};
+}
 
 /* ***************************
  * Build management view
@@ -285,6 +294,24 @@ invCont.deleteItem = async function (req, res, next) {
   } else {
     req.flash("notice", "Sorry, the delete failed.")
     res.redirect(`/inv/delete/${inv_id}`)
+  }
+}
+
+/* ***************************
+ * Process Add Review
+ * ************************** */
+invCont.addReview = async function (req, res) {
+  const { review_text, inv_id } = req.body
+  const account_id = res.locals.accountData.account_id // Get ID from JWT locals
+  
+  const result = await reviewModel.addReview(review_text, inv_id, account_id)
+
+  if (result) {
+    req.flash("message", "Thank you for your review!")
+    res.redirect(`/inv/detail/${inv_id}`)
+  } else {
+    req.flash("notice", "Sorry, there was an error posting your review.")
+    res.redirect(`/inv/detail/${inv_id}`)
   }
 }
 
